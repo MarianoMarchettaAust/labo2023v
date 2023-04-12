@@ -21,7 +21,7 @@ particionar  <- function( data,  division, agrupa="",  campo="fold", start=1, se
 #------------------------------------------------------------------------------
 
 #Aqui se debe poner la carpeta de la computadora local
-setwd("X:\\gdrive\\austral2023v\\")   #Establezco el Working Directory
+setwd("/Users/mmarchetta/Desktop/laboratorio1")   #Establezco el Working Directory
 
 #cargo los datos
 dataset  <- fread("./datasets/dataset_pequeno.csv")
@@ -31,7 +31,7 @@ dataset  <- dataset[ clase_ternaria!= "" ]
 
 #particiono estratificadamente el dataset
 #Cambiar por la primer semilla de cada uno !
-particionar( dataset, division=c(7,3), agrupa="clase_ternaria", seed= 102191 )  #Cambiar por la primer semilla de cada uno !
+particionar( dataset, division=c(7,3), agrupa="clase_ternaria", seed= 100069 )  #Cambiar por la primer semilla de cada uno !
 
 
 param_basicos  <- list( "cp"=         -1,  #complejidad minima
@@ -69,7 +69,7 @@ ganancia_test_normalizada  <-  ganancia_test / 0.3
 estimulos  <- dataset[ fold==2 & prob_baja2 > 0.025 , .N ]
 aciertos   <- dataset[ fold==2 & prob_baja2 > 0.025 & clase_ternaria =="BAJA+2", .N ]
 
-
+xx
 cat( "Testing total: ",  dataset[ fold==2, .N ], "\n" )
 cat( "Testing BAJA+2: ", dataset[ fold==2 & clase_ternaria =="BAJA+2", .N ], "\n" )
 
@@ -77,4 +77,6 @@ cat( "Estimulos: ", estimulos, "\n" )
 cat( "Aciertos (BAJA+2): ",  aciertos,  "\n" )
 
 cat( "Ganancia en testing (normalizada): ", ganancia_test_normalizada, "\n" )
+cat( "Accuracy: ", estimulos / aciertos, "\n" )
 
+##El accuracy oscila entre 13 y 16%, no parece ser una variacion tan significativa.

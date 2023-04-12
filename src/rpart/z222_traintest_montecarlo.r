@@ -5,7 +5,21 @@ require("data.table")
 require("rpart")
 require("parallel")
 
-ksemillas  <- c(102191, 200177, 410551, 552581, 892237 ) #reemplazar por las propias semillas
+ksemillas  <- c(100019, 100043, 100049, 100057, 100069, 444521,
+                725341,
+                154067,
+                644999,
+                932179,
+                841069,
+                763363,
+                587341,
+                406837,
+                175073,
+                357827,
+                727609,
+                828337,
+                680867,
+                677713 ) #reemplazar por las propias semillas
 
 #------------------------------------------------------------------------------
 #particionar agrega una columna llamada fold a un dataset que consiste en una particion estratificada segun agrupa
@@ -61,7 +75,7 @@ ArbolEstimarGanancia  <- function( semilla, param_basicos )
 #------------------------------------------------------------------------------
 
 #Aqui se debe poner la carpeta de la computadora local
-setwd("X:\\gdrive\\austral2023v\\")   #Establezco el Working Directory
+setwd("/Users/mmarchetta/Desktop/laboratorio1")   #Establezco el Working Directory
 #cargo los datos
 
 #cargo los datos
@@ -102,3 +116,4 @@ tb_salida[  , mean( ganancia_test ) ]
 tb_salida[  , lapply( .SD, mean ) ]
 
 #desvio estandar Distribucion Binomial   sqrt( n * p * (1-p) )
+

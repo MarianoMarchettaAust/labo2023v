@@ -34,15 +34,15 @@ dataset  <- dataset[ clase_ternaria!= "" ]
 particionar( dataset, division=c(7,3), agrupa="clase_ternaria", seed= 100069 )  #Cambiar por la primer semilla de cada uno !
 
 
-param_basicos  <- list( "cp"=         -1,  #complejidad minima
-                        "minsplit"=  400,  #minima cantidad de registros en un nodo para hacer el split
-                        "minbucket"=  10,  #minima cantidad de registros en una hoja
-                        "maxdepth"=    8 ) #profundidad máxima del arbol
+param_basicos  <- list( "cp"=         -0.3355786426,  #complejidad minima
+                        "minsplit"=  483,  #minima cantidad de registros en un nodo para hacer el split
+                        "minbucket"=  5,  #minima cantidad de registros en una hoja
+                        "maxdepth"=    11 ) #profundidad máxima del arbol
 
 #genero el modelo
 modelo  <- rpart("clase_ternaria ~ .",     #quiero predecir clase_ternaria a partir del resto
                  data= dataset[ fold==1],  #fold==1  es training,  el 70% de los datos
-                 xval= 0,
+                 xval= 5,
                  control=  param_basicos )  #aqui van los parametros
 
 

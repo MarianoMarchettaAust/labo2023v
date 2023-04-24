@@ -11,18 +11,12 @@ def ftirar(prob, qty):
 
 
 #defino los jugadores
-mejor = 0.7
-peloton = np.array(range(501, 600)) / 1000
+mejor = 0.8
+peloton = np.array(0.75)
 jugadores = np.append(mejor, peloton)
-
-#veo que tiene el vector
-jugadores
 
 #vectorizo la funcion  ftirar
 vec_ftirar = np.vectorize(ftirar)
-
-#hago que los 100 jugadores tiren 10 veces cada uno
-vec_ftirar(jugadores, 10)
 
 primero_ganador = 0
 
@@ -36,3 +30,4 @@ for i in range(10000): #diez mil experimentos
 
 
 print(primero_ganador)
+print(primero_ganador / 10000)

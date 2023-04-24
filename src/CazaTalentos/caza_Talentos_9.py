@@ -11,9 +11,7 @@ def ftirar(prob, qty):
 
 
 #defino los jugadores
-mejor = 0.7
-peloton = np.array(range(501, 600)) / 1000
-jugadores = np.append(mejor, peloton)
+jugadores = np.array([0.82, 0.81])
 
 #veo que tiene el vector
 jugadores
@@ -21,18 +19,15 @@ jugadores
 #vectorizo la funcion  ftirar
 vec_ftirar = np.vectorize(ftirar)
 
-#hago que los 100 jugadores tiren 10 veces cada uno
-vec_ftirar(jugadores, 10)
-
-primero_ganador = 0
+segundo_regular = 0
+cantidad_tiros = 100
 
 for i in range(10000): #diez mil experimentos
-  vaciertos = vec_ftirar(jugadores, 10) #10 tiros libres cada jugador
-  mejor = np.argmax(vaciertos)
-  if mejor == 0:
-    primero_ganador += 1
+  vaciertos = vec_ftirar(jugadores, 100) #10 tiros libres cada jugador
+
+  if vaciertos[1] / cantidad_tiros >= 0.81:
+    segundo_regular += 1
 
 
-
-
-print(primero_ganador)
+print(segundo_regular)
+print(segundo_regular / 10000)

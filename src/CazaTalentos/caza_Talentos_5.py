@@ -1,4 +1,4 @@
-import  numpy as np
+import numpy as np
 
 np.random.seed(100019)
 

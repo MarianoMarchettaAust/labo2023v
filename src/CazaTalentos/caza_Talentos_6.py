@@ -8,15 +8,9 @@ np.random.seed(100019)
 def ftirar(prob, qty):
   return sum(np.random.rand(qty) < prob)
 
-
-
 #defino los jugadores
 mejor = 0.8
-peloton = np.array(range(691, 790)) / 1000
-jugadores = np.append(mejor, peloton)
-
-#veo que tiene el vector
-jugadores
+peloton = np.array(range(700, 799)) / 1000
 
 #vectorizo la funcion  ftirar
 vec_ftirar = np.vectorize(ftirar)
@@ -24,22 +18,26 @@ primero_ganador = 0
 cantidad_experimientos = 10000
 
 for i in range(cantidad_experimientos):
-  #print(f'Iteracion numero {i}')
+  jugadores = np.append(mejor, peloton)
 
-  vaciertos = vec_ftirar(jugadores, 50)
-  mejores_cinco = sorted((vaciertos))[:5] #obtengo los primeros 5
+  vaciertos = vec_ftirar(jugadores, 50) #50 tiros por cada pibe
+  idx_max = vaciertos.argsort()[-5:]
+
+  # Creamos un array de ceros con la misma forma que el array original
+  arr_zeros = np.zeros_like(vaciertos)
+
+  # Asignamos los 5 mayores elementos al nuevo array
+  arr_zeros[idx_max] = vaciertos[idx_max]
+  jugadores = jugadores * arr_zeros
   
-  # for jugador in mejores_cinco:
-  #   aciertos_torneo = vaciertos[jugador]
-  #   aciertos_segunda = vec_ftirar(jugadores[jugador], 100) #a cada uno de los primeros 5 los hago volver a tirar
-  #   print(aciertos_torneo, "\t", aciertos_segunda, "\t", aciertos_torneo/50, aciertos_segunda/100)
-  maximo = np.max(vaciertos)
-  #indice de maximo acertador
-  indice_del_maximo = np.where(vaciertos == maximo)[0]
-  mejor_jugador_experimiento = jugadores[indice_del_maximo][0]
+  #print(jugadores)
+  vaciertos = vec_ftirar(jugadores, 100)
+  #print(vaciertos)
   
-  if mejor_jugador_experimiento == mejor:
-    primero_ganador += 1
+  max_index = np.argmax(vaciertos)
+  
+  if max_index == 0:
+   primero_ganador += 1
 
 print(primero_ganador)
 print(primero_ganador / cantidad_experimientos)

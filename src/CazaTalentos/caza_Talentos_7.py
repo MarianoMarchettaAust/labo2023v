@@ -30,23 +30,24 @@ for i in range(10000): #diez mil experimentos
   jugadores_indexes = np.full(len(jugadores), True, dtype=bool)
 
   #Itero hasta que queden 5 jugadores
-  for i, jugador in enumerate(jugadores):
-    if erra(jugador) and jugadores_indexes[i] == True:
-      jugadores_indexes[i] = False
-      
-    if np.count_nonzero(jugadores_indexes) == 5:
-      break
+  while np.count_nonzero(jugadores_indexes) > 5:
+    for i, jugador in enumerate(jugadores):
+      if erra(jugador) and jugadores_indexes[i] == True:
+        jugadores_indexes[i] = False
+        
+      if np.count_nonzero(jugadores_indexes) == 5:
+        break
   
-  #filtro los jugadores que no erraron (usando jugadores_indexes que es un array de booleanos) y los hago tirar 100 veces
-  vaciertos = vec_ftirar(jugadores[jugadores_indexes], 100) 
-  #maxima cantidad de aciertos
-  maximo = np.max(vaciertos)
-  #indice de maximo acertador
-  indice_del_maximo = np.where(vaciertos == maximo)[0]
-  mejor_jugador_experimiento = jugadores[indice_del_maximo][0]
+  jugadores = jugadores * jugadores_indexes
   
-  if mejor_jugador_experimiento == mejor:
-    primero_ganador += 1
+  #print(jugadores)
+  vaciertos = vec_ftirar(jugadores, 100)
+  #print(vaciertos)
+  
+  max_index = np.argmax(vaciertos)
+  
+  if max_index == 0:
+   primero_ganador += 1
 
 print(primero_ganador)
 print(primero_ganador / cantidad_experimientos)

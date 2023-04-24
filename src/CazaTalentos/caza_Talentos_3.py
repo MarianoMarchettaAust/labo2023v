@@ -11,8 +11,8 @@ def ftirar(prob, qty):
 
 
 #defino los jugadores
-mejor = 0.85
-peloton = np.array(range(750, 849)) / 1000
+mejor = 0.8
+peloton = np.array(0.75)
 jugadores = np.append(mejor, peloton)
 
 #vectorizo la funcion  ftirar
@@ -25,6 +25,8 @@ for i in range(10000): #diez mil experimentos
   mejor = np.argmax(vaciertos)
   if mejor == 0:
     primero_ganador += 1
+
+
 
 
 print(primero_ganador)

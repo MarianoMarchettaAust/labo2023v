@@ -6,7 +6,7 @@ require("data.table")
 require("rpart")
 require("rpart.plot")
 
-setwd("X:\\gdrive\\austral2023v\\" )  #establezco la carpeta donde voy a trabajar
+setwd("/Users/mmarchetta/Desktop/laboratorio1" )  #establezco la carpeta donde voy a trabajar
 
 #cargo el dataset
 dataset  <- fread( "./datasets/dataset_pequeno.csv")
@@ -16,7 +16,7 @@ dir.create( "./exp/EA4810/", showWarnings = FALSE )
 setwd( "./exp/EA4810" )
 
 #uso esta semilla para los canaritos
-set.seed(102191)
+set.seed(100019)
 
 #agrego 30 variables canarito, random distribucion uniforme en el intervalo [0,1]
 for( i in  1:30 ) dataset[ , paste0("canarito", i ) :=  runif( nrow(dataset)) ]

@@ -1,0 +1,4 @@
+Sobre el modelo base se hicieron los siguientes cambios:
+  - Se incorporaron los meses de la pandemia
+  - Se utilizaron 3 meses para testing
+  - Undersampling de 0.3 en vez de 0.4
